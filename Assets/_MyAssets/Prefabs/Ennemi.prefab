@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1716611999982882251}
   - component: {fileID: 1716611999982882249}
   - component: {fileID: -9172161069126604393}
+  - component: {fileID: 1814908590037019676}
   m_Layer: 0
   m_Name: Ennemi
   m_TagString: Untagged
@@ -99,6 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _points: 100
+  _fireRate: 2
+  _bouletEnemyPrefab: {fileID: 3967084218428997557, guid: be364d05eb06963498229787a60be3e6, type: 3}
 --- !u!58 &-9172161069126604393
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -115,3 +119,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.25
+--- !u!50 &1814908590037019676
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716611999982882252}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0

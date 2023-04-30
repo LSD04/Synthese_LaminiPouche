@@ -5,7 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
      [SerializeField] private float _speed = 5f;
+     [SerializeField] private int _points = 100;
+      [SerializeField] private float _fireRate = 2f;
+      [SerializeField] private GameObject _bouletEnemyPrefab = default;
+     
      private Player _player;
+     private float _canFire = 1f;
 
     void Start()
     {
@@ -16,6 +21,17 @@ public class Enemy : MonoBehaviour
     void Update()
     {
          MouvementsEnemy();
+          Fire();
+    }
+
+     private void Fire()
+    {
+        if (Time.time > _canFire)
+        {
+            _canFire = Time.time + _fireRate;    
+            Instantiate(_bouletEnemyPrefab, transform.position + new Vector3(0f, -1.2f, 0f), Quaternion.identity);
+              
+        }
     }
 
      private void MouvementsEnemy()
@@ -32,6 +48,8 @@ public class Enemy : MonoBehaviour
     {
         if (collision.tag == "Boulet")
         {
+            UIManager uiManager = FindObjectOfType<UIManager>();
+            uiManager.AjouterScore(_points);
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
