@@ -63,5 +63,20 @@ public class Player : MonoBehaviour
 
     }
 
+    public void Degats()
+    {
+        _viesJoueur--;
+        UIManager uiManager = FindObjectOfType<UIManager>();
+        uiManager.DeleteImage(_viesJoueur);
+      
+        if(_viesJoueur < 1)
+        {
+            SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
+            spawnManager.FinPartie();
+            Destroy(gameObject);
+        }
+
+    }
+
    
 }

@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
         }
         else if (collision.tag == "Player")
         {
-           
+           _player.Degats();
             Destroy(gameObject);
         }
     }

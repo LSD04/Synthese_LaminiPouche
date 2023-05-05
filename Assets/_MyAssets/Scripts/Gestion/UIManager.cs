@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
 {
    [SerializeField] private int _score =  default;
     [SerializeField] private TextMeshProUGUI _txtScore = default;
+    [SerializeField] private Image[] _lives = default; 
 
     void Start()
     {
@@ -17,13 +18,17 @@ public class UIManager : MonoBehaviour
         UpdateScore();
     }
 
-  
-    
     public void AjouterScore(int points) {
         _score += points;
         UpdateScore();
     }
     private void UpdateScore() {
         _txtScore.text = "Score : " + _score.ToString();
+    }
+
+    public void DeleteImage(int noImage)
+    {
+        _lives[noImage].gameObject.SetActive(false);
+        noImage++;
     }
 }

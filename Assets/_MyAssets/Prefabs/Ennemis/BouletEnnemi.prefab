@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3967084218428997563}
   - component: {fileID: 3967084218428997556}
-  - component: {fileID: 3929163434935799504}
+  - component: {fileID: 1929485798538097833}
   m_Layer: 0
   m_Name: BouletEnnemi
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3929163434935799504
+--- !u!114 &1929485798538097833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3967084218428997557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 049b7b9a06b986941841b5372ff8e342, type: 3}
+  m_Script: {fileID: 11500000, guid: 047e502e9949d8747903924ba3027428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 15
+  _nom: Enemy
