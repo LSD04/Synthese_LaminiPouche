@@ -31,4 +31,9 @@ public class UIManager : MonoBehaviour
         _lives[noImage].gameObject.SetActive(false);
         noImage++;
     }
+
+     public int getScore()
+    {
+        return _score;
+    }
 }

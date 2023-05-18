@@ -8,9 +8,12 @@ public class Player : MonoBehaviour
    [SerializeField] private float _fireRate = 0.5f;
    [SerializeField] private int _viesJoueur = 3;
    [SerializeField] private GameObject _bouletPrefab = default;
+   [SerializeField] private GameObject _followerPrefab1 = default;
+   [SerializeField] private GameObject _followerPrefab2 = default;
 
     private float _canFire = -1f;
     private Animator _anim;
+    private bool _isTripleActive = false;
 
     void Start()
     {
@@ -78,5 +81,31 @@ public class Player : MonoBehaviour
 
     }
 
-   
+    public void PowerUp()
+    {
+        if (!_isTripleActive)
+        {
+        _followerPrefab1.SetActive(true);
+        _followerPrefab2.SetActive(true);
+        }
+        _isTripleActive = true;
+        StartCoroutine(Triple());
+       
+    }
+     IEnumerator Triple()
+    {
+        yield return new WaitForSeconds(5f);
+        _isTripleActive = false;
+         _followerPrefab1.SetActive(false);
+        _followerPrefab2.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "BouletEnnemi" )
+        {
+            Degats();
+        }
+    }
+
 }

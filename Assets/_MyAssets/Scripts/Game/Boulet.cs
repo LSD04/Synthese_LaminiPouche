@@ -12,15 +12,18 @@ public class Boulet : MonoBehaviour
     {
         if (_nom == "Player")
         {
-            LaserJoueur();
+            BouletJoueur();
         }
-        else
+        else if (_nom == "Enemy")
         {
-            LaserEnnemi();
+            BouletEnnemi();
+        }
+        else {
+            BouletFollower();
         }
     }
 
-    private void LaserJoueur()
+    private void BouletJoueur()
     {
          transform.Translate(Vector3.up * Time.deltaTime * _speed); 
         if (transform.position.y > 9f) 
@@ -29,11 +32,30 @@ public class Boulet : MonoBehaviour
         }
     }
 
-    private void LaserEnnemi()
+    private void BouletEnnemi()
     {
         transform.Translate(Vector3.down * Time.deltaTime * _speed); 
         if (transform.position.y < -9f) 
         {
+            Destroy(gameObject);
+        }
+    }
+
+     private void BouletFollower()
+    {
+         transform.Translate(Vector3.up * Time.deltaTime * _speed); 
+        if (transform.position.y > 9f) 
+        {
+            Destroy(gameObject);
+        }
+    }
+
+     private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player" && _nom != "Player")
+        {
+            Player player = other.GetComponent<Player>();
+            player.Degats();
             Destroy(gameObject);
         }
     }
