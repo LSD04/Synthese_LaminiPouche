@@ -16,7 +16,7 @@ public class FinPartie : MonoBehaviour
     void Start()
     {
         _score = PlayerPrefs.GetInt("Score");
-        _txtScore.text = "Votre Score : " + _score.ToString();
+        _txtScore.text =   _score.ToString();
 
         GameOverSequence();
     }

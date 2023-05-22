@@ -19,9 +19,15 @@ public class Player : MonoBehaviour
     private Animator _anim;
     private bool _isTripleActive = false;
 
+    public int maxHeatlh = 3;
+    public int currentHealth ;
+    public HealthBar healthBar;
+
     void Start()
     {
          _anim = GetComponent<Animator>();
+         currentHealth = maxHeatlh;
+         healthBar.SetMaxHeatlh(maxHeatlh);
     }
 
     // Update is called once per frame
@@ -73,18 +79,35 @@ public class Player : MonoBehaviour
 
     public void Degats()
     {
-        _viesJoueur--;
-        UIManager uiManager = FindObjectOfType<UIManager>();
-        uiManager.DeleteImage(_viesJoueur);
+       // _viesJoueur--;
+       
+       // UIManager uiManager = FindObjectOfType<UIManager>();
+        //uiManager.DeleteImage(_viesJoueur);
       
-        if(_viesJoueur < 1)
+        if(currentHealth >= 1)
+        {
+           currentHealth--;
+        healthBar.SetHealth(currentHealth);
+        }
+        else
         {
             SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
              AudioSource.PlayClipAtPoint(_endSound, Camera.main.transform.position, 0.8f);
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
 
 
+    }
+
+     IEnumerator FinPartie()
+        {
+            yield return new WaitForSeconds(2f);
+            SceneManager.LoadScene(2);
+        }
+
+    public int  Sante()
+    {
+        return currentHealth;
     }
     
   
