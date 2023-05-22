@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 public class Player : MonoBehaviour
 {
    [SerializeField] private float _speed = 10f;
    [SerializeField] private float _fireRate = 0.5f;
    [SerializeField] private int _viesJoueur = 3;
+    [SerializeField] private AudioClip _laserSound = default;
+    [SerializeField] private AudioClip _endSound = default;
    [SerializeField] private GameObject _bouletPrefab = default;
    [SerializeField] private GameObject _followerPrefab1 = default;
    [SerializeField] private GameObject _followerPrefab2 = default;
@@ -32,6 +36,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
         {
             _canFire = Time.time + _fireRate;
+            AudioSource.PlayClipAtPoint(_laserSound, Camera.main.transform.position, 0.3f);
            
             Instantiate(_bouletPrefab, transform.position + new Vector3(0f, 1.2f, 0f), Quaternion.identity);
               
@@ -75,11 +80,14 @@ public class Player : MonoBehaviour
         if(_viesJoueur < 1)
         {
             SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
-            spawnManager.FinPartie();
+             AudioSource.PlayClipAtPoint(_endSound, Camera.main.transform.position, 0.8f);
             Destroy(gameObject);
         }
 
+
     }
+    
+  
 
     public void PowerUp()
     {
