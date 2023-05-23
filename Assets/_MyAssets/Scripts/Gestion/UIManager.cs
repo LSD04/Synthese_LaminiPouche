@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
 {
    [SerializeField] private int _score =  default;
     [SerializeField] private TextMeshProUGUI _txtScore = default;
-
+    [SerializeField] private TextMeshProUGUI _txtTemps = default;
     [SerializeField] private GameObject _pausePanel = default;
     private bool _pauseOn = false;
      private Player _player;
@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
     private void Update() {
         
         // Permet la gestion du panneau de pause (marche/arrêt)
-        
+         _txtTemps.text = "Temps: " + Time.time.ToString("f2");
         if ((Input.GetKeyDown(KeyCode.Escape) && !_pauseOn))  {
             _pausePanel.SetActive(true);
             Time.timeScale = 0;
