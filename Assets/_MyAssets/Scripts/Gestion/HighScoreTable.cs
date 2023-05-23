@@ -23,28 +23,29 @@ public class HighScoreTable : MonoBehaviour
 
     private void Awake()
     {
-        //PlayerPrefs.DeleteKey("highScoreTable"); // Sert si l'on d�sire effacer les scores
+        PlayerPrefs.DeleteKey("highScoreTable"); // Sert si l'on d�sire effacer les scores
         GenererTableHighScore();
         //V�rifie si on est sur la sc�ne de fin afin de g�rer l'action du bouton de sauvegarde
         if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             //Si le score obtenu est plus grand que le score en position 10 on affiche l'�cran d'ajout
-            if (highScores._highScoreEntryList.Count >= 10)
+            if (highScores._highScoreEntryList.Count >= 1)
             {
-                if (PlayerPrefs.GetInt("Score") > highScores._highScoreEntryList[9].score)
+                if (PlayerPrefs.GetInt("Score") > highScores._highScoreEntryList[0].score)
                 {
                     _saisieNom.SetActive(true);
                     _txtMenu.SetActive(false);
                     _txtRestart.SetActive(false);
-                    Button btn = _button.GetComponent<Button>();
+                     Button btn = _button.GetComponent<Button>();
                     btn.onClick.AddListener(EnregistrerNom);
+               
                 }
             }
             else
             {
-                _saisieNom.SetActive(true);
-                _txtMenu.SetActive(false);
-                _txtRestart.SetActive(false);
+                _saisieNom.SetActive(false);
+                _txtMenu.SetActive(true);
+                _txtRestart.SetActive(true);
                 Button btn = _button.GetComponent<Button>();
                 btn.onClick.AddListener(EnregistrerNom);
             }
@@ -78,7 +79,7 @@ public class HighScoreTable : MonoBehaviour
 
         if (highScores == null)
         {
-            AddHighScoreEntry(5500, "Dave");
+            AddHighScoreEntry(100, "Stan");
         }
 
         // trier(ordonner) la liste des highscores
@@ -102,7 +103,7 @@ public class HighScoreTable : MonoBehaviour
         int compteur = 1;
         foreach (HighScoreEntry highScoreEntry in highScores._highScoreEntryList)
         {
-            if (compteur <= 10)
+            if (compteur <= 1)
             {
                 CreateHighScoreEntryTransform(highScoreEntry, _entryContainer, _highScoreEntryTransformList);
             }
